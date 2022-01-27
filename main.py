@@ -1,9 +1,10 @@
 import sys
 from scripts import *
-from flask import Flask, render_template
+from flask import Flask, Response, abort, render_template
 
 from scripts.args import ArgumentParser
 from scripts.file import FlaskFileReader
+from scripts.mime import MIMEType
 
 flask_properties = {
     "template_folder": "web"
@@ -16,9 +17,12 @@ flaskReader = FlaskFileReader(template_folder=flask_properties["template_folder"
 def hello():
     return render_template("index.html", banner="src/banner.png")
 
-@app.route('/src/<file>')
+@app.route('/src/<path:file>')
 def load_source(file):
-    return flaskReader.readWeb('src/' + file)
+    try:
+        return Response(flaskReader.readWeb('src/' + file), mimetype=MIMEType.get_mimetype(file))
+    except FileNotFoundError:
+        abort(404)
 
 if __name__ == '__main__':
     args = ArgumentParser.parse_args(sys.argv)
