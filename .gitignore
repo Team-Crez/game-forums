@@ -1,3 +1,6 @@
 venv/
 .vscode/
 __pycache__/
+*.kra
+*.kra~
+local/
