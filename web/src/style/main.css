@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&family=Noto+Sans+KR:wght@400;700&display=swap');
+
+body {
+    margin: 0px;
+    background-color: rgb(50, 50, 50);
+}
+
+#banner {
+    display: block;
+}
+
+.banner {
+    display: block;
+    max-width: 100%; /* 최대 너비: 120vh */
+    max-height: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.site-title {
+    display: none;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 10vh;
+    text-align: center;
+    color: rgb(242, 242, 242);
+}
+
+contour {
+    display: block;
+    border: solid rgb(100, 100, 100) 0.5vh;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    border-radius: 0.4vh;
+}
+
+@media (min-width: 208vh) {
+    .banner {
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
+        float: left;
+        transform: translateY(-7.5vh);
+    }
+
+    .site-title {
+        display: block;
+        /* margin-left: 2vw; */
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 7.5vh;
+    }
+
+    .topcontour {
+        margin-top: 12.6vh;
+    }
+}

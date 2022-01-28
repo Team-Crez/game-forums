@@ -6,6 +6,7 @@ class MIMEType:
         'jpeg': 'image/jpeg',
         'png': 'image/png',
         'gif': 'image/gif',
+        'css': 'text/css',
     }
 
     @classmethod
