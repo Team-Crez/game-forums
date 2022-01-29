@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&family=Noto+Sans+KR:wght@400;700&display=swap');
+
 
 body {
     margin: 0px;
@@ -6,7 +6,8 @@ body {
 }
 
 #banner {
-    display: block;
+    display: flex;
+    justify-content: center;
 }
 
 .banner {
@@ -25,35 +26,25 @@ body {
     color: rgb(242, 242, 242);
 }
 
-contour {
-    display: block;
-    border: solid rgb(100, 100, 100) 0.5vh;
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
-    border-radius: 0.4vh;
-}
-
 @media (min-width: 208vh) {
     .banner {
         margin-left: 0px;
         margin-right: 0px;
         margin-top: 0px;
         float: left;
-        transform: translateY(-7.5vh);
     }
 
     .site-title {
-        display: block;
-        /* margin-left: 2vw; */
+        width: auto;
+        display: inline-block;
         margin-left: auto;
         margin-right: auto;
         margin-top: 7.5vh;
+        object-fit: fill;
+        flex: 1;
     }
 
-    .topcontour {
+    /* .topcontour {
         margin-top: 12.6vh;
-    }
+    } */
 }

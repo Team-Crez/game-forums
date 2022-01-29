@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&family=Noto+Sans+KR:wght@400;700&display=swap');
+
+contour {
+    display: block;
+    border: solid rgb(100, 100, 100) 0.5vh;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    border-radius: 0.4vh;
+}
+
+.menu {
+    display: block;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 5vh;
+}
+
+.menu > * {
+    display: inline-block;
+}

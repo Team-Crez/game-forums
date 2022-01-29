@@ -3,7 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="src/style/main.css">
+
+        <link rel="stylesheet" href="src/style/mainpage.css">
+        <link rel="stylesheet" href="src/style/global.css">
+
         {% for global_script in global_scripts %}
             <script src="src/js/{{ global_script }}"></script>
         {% endfor %}
@@ -19,9 +22,8 @@
             </picture>
             <p class="site-title">얼불춤 & 리듬닥터<br>통합 비공식 포럼</p>
         </section>
-        <contour class="topcontour" />
-        <section id="menu">
-
+        <contour class="topcontour"></contour>
+        <section class="menu">       
         </section>
     </body>
 </html>

@@ -45,6 +45,6 @@ def load_source(file):
 if __name__ == '__main__':
     args = ArgumentParser.parse_args(sys.argv)
     if '-debug' in args:
-        app.run(debug=True, host='127.0.0.1')
+        app.run(debug=True, host='0.0.0.0')
     else:
         app.run()
