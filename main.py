@@ -1,4 +1,4 @@
-import sys
+import sys, copy
 from scripts import *
 from flask import Flask, Response, abort, render_template
 
@@ -10,12 +10,30 @@ flask_properties = {
     "template_folder": "web"
 }
 
+global_scripts = [
+    "string.js",
+    "element_scaler.js",
+    "https_redirection.js"
+]
+
+def get_global_scripts():
+    result = copy.copy(global_scripts)
+    if app.debug:
+        if "https_redirection.js" in result:
+            result.remove("https_redirection.js")
+    return result
+
 app = Flask(__name__, **flask_properties)
 flaskReader = FlaskFileReader(template_folder=flask_properties["template_folder"])
 
 @app.route('/')
 def hello():
-    return render_template("index.html", banner="src/banner.png")
+    main_prop = {
+        "banner": "src/banner.png",
+        "global_scripts": get_global_scripts()
+    }
+
+    return render_template("index.html", **main_prop)
 
 @app.route('/src/<path:file>')
 def load_source(file):
