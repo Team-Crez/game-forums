@@ -4,6 +4,7 @@ from flask import Flask, Response, abort, render_template
 
 from scripts.args import ArgumentParser
 from scripts.file import FlaskFileReader
+from scripts.image import ImageModifier
 from scripts.mime import MIMEType
 
 flask_properties = {
@@ -29,7 +30,7 @@ flaskReader = FlaskFileReader(template_folder=flask_properties["template_folder"
 @app.route('/')
 def hello():
     main_prop = {
-        "banner": "src/banner.png",
+        "banner": "src/banner",
         "global_scripts": get_global_scripts()
     }
 
@@ -44,7 +45,13 @@ def load_source(file):
 
 if __name__ == '__main__':
     args = ArgumentParser.parse_args(sys.argv)
-    if '-debug' in args:
-        app.run(debug=True, host='0.0.0.0')
-    else:
-        app.run()
+    flask_args = {
+        'host': '0.0.0.0'
+    }
+
+    if '-debug' in args: flask_args['debug'] = True
+    if '-local' in args: flask_args['host'] = '0.0.0.0'
+
+    ImageModifier.image_resizer("./web/src/banner.png", *[0.8, 0.6, 0.4])
+    app.run(**flask_args)
+
