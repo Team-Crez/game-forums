@@ -53,7 +53,7 @@ if __name__ == '__main__':
     if '-debug' in args: flask_args['debug'] = True
     if '-local' in args: flask_args['host'] = '127.0.0.1'
 
-    resized_images = ImageModifier.image_resizer(["./web/src/banner.png"], [0.8, 0.6, 0.4])[1]
+    resized_images = ImageModifier.image_resizer(["./web/src/banner.png"], [0.8, 0.6, 0.4, 0.2])[1]
     ImageModifier.image_changer(resized_images, 'webp', lossless=False)
     app.run(**flask_args)
 

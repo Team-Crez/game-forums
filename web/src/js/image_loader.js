@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     isSupportWebP = checkWebP()
 
-    var everyElement = document.querySelectorAll("img, source") // 모든 이미지 선택
+    var everyElement = document.querySelectorAll("source, img") // 모든 이미지 선택
     everyElement.forEach((item, index) => {
         if (item.hasAttribute("data-src")) {
             var finalSrc = convertSrc(item.dataset.src, isSupportWebP)
