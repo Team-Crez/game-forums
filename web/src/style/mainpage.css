@@ -8,6 +8,7 @@ body {
 #banner {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .banner {
@@ -29,16 +30,20 @@ body {
         margin-left: 0px;
         margin-right: 0px;
         margin-top: 0px;
+        
         float: left;
     }
 
     .site-title {
-        width: auto;
         display: inline-block;
-        margin-top: 2.5vw;
+
+        width: auto;
+        height: 100%;
+
+        margin-top: 0px;
         margin-bottom: 0px;
+
         object-fit: fill;
-        height: 0px;
         flex: 1;
     }
 

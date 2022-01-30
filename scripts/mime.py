@@ -1,13 +1,8 @@
+import json
+
 class MIMEType:
     default_mimetype = 'text/plain'
-    mimetypes = {
-        'js': 'application/javascript',
-        'jpg': 'image/jpeg',
-        'jpeg': 'image/jpeg',
-        'png': 'image/png',
-        'gif': 'image/gif',
-        'css': 'text/css',
-    }
+    mimetypes = json.load(open("./resources/mimetypes.json", "r"))
 
     @classmethod
     def get_mimetype(cls, file):

@@ -27,7 +27,7 @@ class ImageModifier:
         return img_paths, img_path_list
 
     @staticmethod
-    def image_changer(paths, extension, image_type = None):
+    def image_changer(paths, extension, image_type = None, **kwargs):
         if not image_type: image_type = extension
         
         img_paths = {}
@@ -37,7 +37,7 @@ class ImageModifier:
             img = Image.open(path)
             splitted_path = os.path.split(path)[1]
             img_name = '{}/{}.{}'.format(os.path.dirname(path), os.path.splitext(splitted_path)[0], extension)
-            img.save(img_name, image_type)
+            img.save(img_name, image_type, **kwargs)
 
             img_paths[path] = img_name
             img_path_list.append(path)

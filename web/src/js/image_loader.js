@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-    function check_webp() {
+    function checkWebP() {
         var elem = document.createElement('canvas');
 
         if (!!(elem.getContext && elem.getContext('2d'))) {
@@ -9,16 +9,29 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     }
 
-    if (!check_webp()) {
-        var everyElement = document.querySelectorAll("img, source") // 모든 이미지 선택
-        everyElement.forEach((item, index) => {
-            if (item.hasAttribute("src")) {
-                item.setAttribute("src", item.getAttribute("src").replace(/\.webp$/, ".png"))
-            }
-
-            if (item.hasAttribute("srcset")) {
-                item.setAttribute("srcset", item.getAttribute("srcset").replace(/\.webp$/, ".png"))
-            }
-        })
+    function convertSrc(src, isSupportWebP) {
+        if (isSupportWebP) {
+            return src
+        } else {
+            return src.replace(/\.webp$/, ".png")
+        }
     }
+
+    isSupportWebP = checkWebP()
+
+    var everyElement = document.querySelectorAll("img, source") // 모든 이미지 선택
+    everyElement.forEach((item, index) => {
+        if (item.hasAttribute("data-src")) {
+            var finalSrc = convertSrc(item.dataset.src, isSupportWebP)
+            switch (item.tagName.toLowerCase()) {
+                case "img":
+                    item.setAttribute("src", finalSrc)
+                    break
+                
+                case "source":
+                    item.setAttribute("srcset", finalSrc)
+                    break
+            }
+        }
+    })
 })

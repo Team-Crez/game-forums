@@ -1,0 +1,11 @@
+{
+    "js": "application/javascript",
+    "css": "text/css",
+    "html": "text/html",
+
+    "webp": "image/webp",
+    "jpg": "image/jpeg",
+    "jpeg": "image/jpeg",
+    "png": "image/png",
+    "gif": "image/gif"
+}
