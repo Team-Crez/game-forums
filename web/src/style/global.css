@@ -3,6 +3,7 @@
 contour {
     display: block;
     border: solid rgb(100, 100, 100) 0.5vh;
+    background-color: rgb(100, 100, 100);
     width: 95%;
     margin-left: auto;
     margin-right: auto;
