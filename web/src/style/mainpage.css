@@ -35,8 +35,10 @@ body {
     .site-title {
         width: auto;
         display: inline-block;
-        margin-top: 7.5vh;
+        margin-top: 2.5vw;
+        margin-bottom: 0px;
         object-fit: fill;
+        height: 0px;
         flex: 1;
     }
 

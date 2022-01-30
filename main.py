@@ -13,6 +13,7 @@ flask_properties = {
 
 global_scripts = [
     "string.js",
+    "image_loader.js",
     "element_scaler.js",
     "https_redirection.js"
 ]
@@ -50,8 +51,9 @@ if __name__ == '__main__':
     }
 
     if '-debug' in args: flask_args['debug'] = True
-    if '-local' in args: flask_args['host'] = '0.0.0.0'
+    if '-local' in args: flask_args['host'] = '127.0.0.1'
 
-    ImageModifier.image_resizer("./web/src/banner.png", *[0.8, 0.6, 0.4])
+    resized_images = ImageModifier.image_resizer(["./web/src/banner.png"], [0.8, 0.6, 0.4])[1]
+    ImageModifier.image_changer(resized_images, 'webp')
     app.run(**flask_args)
 
