@@ -20,7 +20,7 @@ global_scripts = [
 
 def get_global_scripts():
     result = copy.copy(global_scripts)
-    if app.debug:
+    if flask_args['debug']:
         if "https_redirection.js" in result:
             result.remove("https_redirection.js")
     return result
@@ -28,14 +28,30 @@ def get_global_scripts():
 app = Flask(__name__, **flask_properties)
 flaskReader = FlaskFileReader(template_folder=flask_properties["template_folder"])
 
+default_prop = {
+    "embed_metadata": [
+        ["통합 비공식 포럼", "og:title"],
+        ["Team Crez에서 개발 중인 얼불춤 & 리듬닥터 통합 비공식 포럼입니다", "og:description"],
+        ["https://game-forums.herokuapp.com", "og:url"],
+        ["https://game-forums.herokuapp.com/src/banner_x0.4.webp", "og:image"],
+        ["rgb(252, 123, 3)", "theme-color"]
+    ]
+}
+
+def get_prop(prop):
+    result = copy.copy(default_prop)
+    for key, value in prop.items():
+        result[key] = value
+    
+    return result
+
 @app.route('/')
 def hello():
     main_prop = {
-        "banner": "src/banner",
-        "global_scripts": get_global_scripts()
+        "banner": "src/banner"
     }
 
-    return render_template("index.html", **main_prop)
+    return render_template("index.html", **get_prop(main_prop))
 
 @app.route('/src/<path:file>')
 def load_source(file):
@@ -51,9 +67,14 @@ if __name__ == '__main__':
     }
 
     if '-debug' in args: flask_args['debug'] = True
+    else: flask_args['debug'] = False
+
     if '-local' in args: flask_args['host'] = '127.0.0.1'
+
+    default_prop["global_scripts"] = get_global_scripts()
 
     resized_images = ImageModifier.image_resizer(["./web/src/banner.png"], [0.8, 0.6, 0.4, 0.2])[1]
     ImageModifier.image_changer(resized_images, 'webp', lossless=False)
+
     app.run(**flask_args)
 
