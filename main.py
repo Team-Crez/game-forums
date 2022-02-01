@@ -33,8 +33,8 @@ default_prop = {
         ["통합 비공식 포럼", "og:title"],
         ["Team Crez에서 개발 중인 얼불춤 & 리듬닥터 통합 비공식 포럼입니다", "og:description"],
         ["https://game-forums.herokuapp.com", "og:url"],
-        ["https://game-forums.herokuapp.com/src/banner_x0.4.webp", "og:image"],
-        ["rgb(252, 123, 3)", "theme-color"]
+        ["https://game-forums.herokuapp.com/src/banner_x0.2.webp", "og:image"],
+        ["#fc7b03", "theme-color"] # rgb(252, 123, 3) -> #fc7b03
     ]
 }
 
