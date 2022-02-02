@@ -75,8 +75,8 @@ def start():
 
     default_prop["global_scripts"] = get_global_scripts()
 
-    resized_images = ImageModifier.image_resizer(["./web/src/banner.png"], [0.8, 0.6, 0.4, 0.2])[1]
-    ImageModifier.image_changer(resized_images, 'webp', lossless=False)
+    resized_images = ImageModifier.image_resizer(["./web/src/banner.webp"], [0.8, 0.6, 0.4, 0.2])[1]
+    ImageModifier.image_changer(resized_images, 'png')
 
     if not 'HEROKU_ENV' in os.environ: app.run(**flask_args)
 

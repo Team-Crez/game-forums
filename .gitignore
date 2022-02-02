@@ -1,7 +1,20 @@
+# Environment Files
+
 venv/
 .vscode/
 __pycache__/
+
+# Krita Files
 *.kra
 *.kra~
+
+# Local Files
 local/
-*.webp
+
+# Image Files
+*.png
+*_x*.*.webp
+
+# Backup Files, Old Files
+*.bak
+*.old
