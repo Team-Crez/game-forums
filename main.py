@@ -1,4 +1,6 @@
 import sys, copy
+
+import flask
 from scripts import *
 from flask import Flask, Response, abort, render_template
 
@@ -60,7 +62,8 @@ def load_source(file):
     except FileNotFoundError:
         abort(404)
 
-if __name__ == '__main__':
+def start():
+    global flask_args, resized_images, default_prop
     args = ArgumentParser.parse_args(sys.argv)
     flask_args = {
         'host': '0.0.0.0'
@@ -77,4 +80,6 @@ if __name__ == '__main__':
     ImageModifier.image_changer(resized_images, 'webp', lossless=False)
 
     app.run(**flask_args)
+
+start()
 
