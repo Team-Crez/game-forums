@@ -4,3 +4,4 @@ __pycache__/
 *.kra
 *.kra~
 local/
+*.webp
