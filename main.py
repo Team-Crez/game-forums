@@ -1,6 +1,5 @@
-import sys, copy
+import os, sys, copy
 
-import flask
 from scripts import *
 from flask import Flask, Response, abort, render_template
 
@@ -79,7 +78,7 @@ def start():
     resized_images = ImageModifier.image_resizer(["./web/src/banner.png"], [0.8, 0.6, 0.4, 0.2])[1]
     ImageModifier.image_changer(resized_images, 'webp', lossless=False)
 
-    app.run(**flask_args)
+    if not 'HEROKU_ENV' in os.environ: app.run(**flask_args)
 
 start()
 
