@@ -17,8 +17,7 @@ contour {
     justify-content: center;
     font-family: 'Nanum Gothic', sans-serif;
     background-color: rgb(95, 95, 95);
-    font-size: 5vh;
-    height: 7vh;
+    height: 7vmin;
 }
 
 .menu > item {
@@ -26,10 +25,11 @@ contour {
     color: rgb(242, 242, 242);
     padding-left: 2vh;
     padding-right: 2vh;
-    width: 20vw;
-    height: 5vh;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+    width: 20vmax;
+    height: 5vmin;
+    padding-top: 1vmin;
+    padding-bottom: 1vmin;
+    font-size: 5vmin;
 }
 
 .menu > item:hover {
@@ -41,21 +41,25 @@ contour {
 .menu > item item {
     display: none;
     background-color: rgb(95, 95, 95);
+    font-size: 3vmin;
     padding-left: 2vh;
     padding-right: 2vh;
-    height: 5vh;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+    vertical-align: middle;
+    line-height: 5vmin;
+    height: 5vmin;
+    padding-top: 1vmin;
+    padding-bottom: 1vmin;
     margin-top: -1px;
+    text-size-adjust: inherit;
     cursor: pointer;
 }
 
 .menu > item:hover item {
     display: block;
-    min-width: 100%;
-    height: calc(5vh + 2px);
+    width: 100%;
+    min-height: 5vmin;
     position: inherit;
-    transform: translateX(-2vh) translateY(0.5px);
+    transform: translateX(-2vh) translateY(3px);
     overflow: hidden;
 }
 
