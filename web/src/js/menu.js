@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event) => {
+    /*
     function fixMenu() {
         var menu_items = document.querySelectorAll(".menu > *, .menu > * > *")
         if (menu_items != null) {
@@ -24,4 +25,5 @@ document.addEventListener("DOMContentLoaded", (event) => {
     window.addEventListener("resize", (event) => {
         fixMenu()
     })
+    */
 })
