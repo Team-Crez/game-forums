@@ -2,8 +2,8 @@
 
 contour {
     display: block;
-    border: solid rgb(100, 100, 100) 0.5vh;
-    background-color: rgb(100, 100, 100);
+    border: solid rgb(120, 120, 120) 0.5vh;
+    background-color: rgb(120, 120, 120);
     width: 95%;
     margin-left: auto;
     margin-right: auto;
@@ -13,11 +13,52 @@ contour {
 }
 
 .menu {
-    display: block;
+    display: flex;
+    justify-content: center;
     font-family: 'Nanum Gothic', sans-serif;
+    background-color: rgb(95, 95, 95);
     font-size: 5vh;
+    height: 7vh;
 }
 
-.menu > * {
-    display: inline-block;
+.menu > item {
+    text-align: center;
+    color: rgb(242, 242, 242);
+    padding-left: 2vh;
+    padding-right: 2vh;
+    width: 20vw;
+    height: 5vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.menu > item:hover {
+    background-color: rgb(120, 120, 120);
+    cursor: pointer;
+    /* position: absolute; */
+}
+
+.menu > item item {
+    display: none;
+    background-color: rgb(95, 95, 95);
+    padding-left: 2vh;
+    padding-right: 2vh;
+    height: 5vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    margin-top: -1px;
+    cursor: pointer;
+}
+
+.menu > item:hover item {
+    display: block;
+    min-width: 100%;
+    height: calc(5vh + 2px);
+    position: inherit;
+    transform: translateX(-2vh) translateY(0.5px);
+    overflow: hidden;
+}
+
+.menu > item item:hover {
+    background-color: rgb(120, 120, 120);
 }
