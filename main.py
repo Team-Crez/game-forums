@@ -1,7 +1,9 @@
+import time, signal
 import os, sys, copy
 
 from scripts import *
 from flask import Flask, Response, abort, render_template
+from _thread import start_new_thread
 
 from scripts.args import ArgumentParser
 from scripts.file import FlaskFileReader
@@ -25,6 +27,10 @@ def get_global_scripts():
         if "https_redirection.js" in result:
             result.remove("https_redirection.js")
     return result
+
+def timeout(sec):
+    time.sleep(sec)
+    os.kill(os.getpid(), signal.SIGTERM)
 
 app = Flask(__name__, **flask_properties)
 flaskReader = FlaskFileReader(template_folder=flask_properties["template_folder"])
@@ -77,6 +83,9 @@ def start():
 
     resized_images = ImageModifier.image_resizer(["./web/src/banner.webp"], [0.8, 0.6, 0.4, 0.2])[1]
     ImageModifier.image_changer(resized_images, 'png')
+
+    if '-timeout' in args:
+        start_new_thread(timeout, (float(args['-timeout']), ))
 
     if not 'HEROKU_ENV' in os.environ: app.run(**flask_args)
 
