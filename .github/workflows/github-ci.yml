@@ -24,5 +24,5 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Running Test
       run: |
-        & python main.py --debug --local --timeout=30 &
+        python main.py --debug --local --timeout=30 &
         curl -L localhost:5000
