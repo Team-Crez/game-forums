@@ -40,16 +40,32 @@ document.addEventListener("DOMContentLoaded", (event) => {
         mutationsList.forEach(mutation => {
             imgItems = mutation.target.querySelectorAll("source, img")
             imgItems.forEach(item => {
-                if (item.hasAttribute("data-src")) {
-                    var finalSrc = convertSrc(item.dataset.src, isSupportWebP)
-                    switch (item.tagName.toLowerCase()) {
-                        case "img":
-                            item.setAttribute("src", finalSrc)
-                            break
-                        
-                        case "source":
-                            item.setAttribute("srcset", finalSrc)
-                            break
+                if (!(item.hasAttribute("src") || item.hasAttribute("srcset"))) {
+                    if (item.hasAttribute("data-src")) {
+                        var finalSrc = convertSrc(item.dataset.src, isSupportWebP)
+                        switch (item.tagName.toLowerCase()) {
+                            case "img":
+                                item.setAttribute("src", finalSrc)
+                                break
+                            
+                            case "source":
+                                item.setAttribute("srcset", finalSrc)
+                                break
+                        }
+                    }
+
+                    if (item.hasAttribute("data-async-src")) {
+                        item.setAttribute("decoding", "async")
+                        var finalSrc = convertSrc(item.dataset.asyncSrc, isSupportWebP)
+                        switch (item.tagName.toLowerCase()) {
+                            case "img":
+                                item.setAttribute("src", finalSrc)
+                                break
+                            
+                            case "source":
+                                item.setAttribute("srcset", finalSrc)
+                                break
+                        }
                     }
                 }
             })

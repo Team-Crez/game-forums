@@ -2,6 +2,8 @@
 
 img {
     border-radius: 9px;
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 contour {
@@ -84,9 +86,19 @@ contour {
     /* text-align: center; */
     font-size: 2vw;
     font-family: 'Nanum Gothic', sans-serif;
-    margin-left: 1vw;
-    margin-right: 1vw;
-    margin-bottom: 3vh;
+    padding: .5vw;
+    margin-left: .5vw;
+    margin-right: .5vw;
+    margin-bottom: 2vh;
+    border-radius: 9px;
+    background-color: rgb(65, 65, 65);
+    animation-duration: 1s;
+    animation-name: appearing;
+}
+
+.map-block:hover {
+    background-color: rgb(95, 95, 95);
+    cursor: pointer;
 }
 
 .map-block > item {
@@ -97,5 +109,17 @@ contour {
     display: inline-block;
     color: rgb(160, 160, 160);
     margin-right: 1vw;
-    min-width: 5.5vw;
+    min-width: 8.25vw;
+}
+
+@keyframes appearing {
+    from {
+        transform: translateY(1vh);
+        opacity: 0%;
+    }
+
+    to {
+        transform: translateY(0px);
+        opacity: 100%;
+    }
 }
