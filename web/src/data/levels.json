@@ -2,24 +2,32 @@
     "test": {
         "artist": "Forum",
         "music": "Level",
-        "thumbnail": "../../banner_x0.6.webp"
+        "creator": "누구냐",
+        "thumbnail": "../../banner.webp",
+        "difficulty": 0
     },
 
     "wasans": {
         "artist": "404",
         "music": "Error",
-        "thumbnail": "../../banner_x0.6.webp"
+        "creator": "누구냐",
+        "thumbnail": "../../banner.webp",
+        "difficulty": 0
     },
 
     "odfjapodf": {
         "artist": "403",
         "music": "Error",
-        "thumbnail": "../../banner_x0.6.webp"
+        "creator": "누구냐",
+        "thumbnail": "../../banner.webp",
+        "difficulty": 0
     },
 
     "jfoipweq": {
         "artist": "거지같은",
         "music": "무한에러",
-        "thumbnail": "../../banner_x0.6.webp"
+        "creator": "누구냐",
+        "thumbnail": "../../banner_x0.4.webp",
+        "difficulty": 0
     }
 }
