@@ -80,6 +80,11 @@ contour {
     width: 96vw;
 }
 
+.thumbnail {
+    width: 0px;
+    height: 0px;
+}
+
 .map-block {
     display: inline-block;
     width: 31.25%;
@@ -94,6 +99,11 @@ contour {
     background-color: rgb(65, 65, 65);
     animation-duration: 1s;
     animation-name: appearing;
+}
+
+.map-block > .thumbnail {
+    width: 100%;
+    height: auto;
 }
 
 .map-block:hover {
