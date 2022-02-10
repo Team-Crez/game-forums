@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         Object.keys(data).forEach((level) => {
             var mapElem = document.createElement("div")
-            mapElem.classList.add("map-block")
 
             var mapThumbnail = document.createElement("img")
             mapThumbnail.dataset.asyncSrc = "src/data/{0}/{1}".format(level, data[level].thumbnail)
@@ -45,6 +44,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
             
             mapSection.appendChild(mapElem)
             mapThumbnail.addEventListener("load", (event) => {
+                mapElem.classList.add("map-block")
+
                 mapElem.appendChild(artistElem)
                 mapElem.appendChild(musicElem)
                 mapElem.appendChild(creatorElem)

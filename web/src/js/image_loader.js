@@ -1,3 +1,5 @@
+var loadImageAsync = null
+
 document.addEventListener("DOMContentLoaded", (event) => {
     function checkWebP() {
         var elem = document.createElement('canvas');
@@ -54,23 +56,27 @@ document.addEventListener("DOMContentLoaded", (event) => {
                         }
                     }
 
-                    if (item.hasAttribute("data-async-src")) {
-                        item.setAttribute("decoding", "async")
-                        var finalSrc = convertSrc(item.dataset.asyncSrc, isSupportWebP)
-                        switch (item.tagName.toLowerCase()) {
-                            case "img":
-                                item.setAttribute("src", finalSrc)
-                                break
-                            
-                            case "source":
-                                item.setAttribute("srcset", finalSrc)
-                                break
-                        }
-                    }
+                    loadImageAsync(item)
                 }
             })
             
         })
+    }
+
+    loadImageAsync = (item) => {
+        if (item.hasAttribute("data-async-src")) {
+            item.setAttribute("decoding", "async")
+            var finalSrc = convertSrc(item.dataset.asyncSrc, isSupportWebP)
+            switch (item.tagName.toLowerCase()) {
+                case "img":
+                    item.setAttribute("src", finalSrc)
+                    break
+                
+                case "source":
+                    item.setAttribute("srcset", finalSrc)
+                    break
+            }
+        }
     }
 
     const observer = new MutationObserver(processElement)
