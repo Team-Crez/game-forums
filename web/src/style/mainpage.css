@@ -15,6 +15,7 @@ body {
     display: block;
     max-width: 100%; /* 최대 너비: 120vh */
     max-height: 40vh;
+    margin-top: 2.8vh;
 }
 
 .site-title {

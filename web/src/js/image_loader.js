@@ -34,4 +34,29 @@ document.addEventListener("DOMContentLoaded", (event) => {
             }
         }
     })
+
+    var processElement = (mutationsList, observer) => {
+        imageTags = ["source", "img"]
+        mutationsList.forEach(mutation => {
+            imgItems = mutation.target.querySelectorAll("source, img")
+            imgItems.forEach(item => {
+                if (item.hasAttribute("data-src")) {
+                    var finalSrc = convertSrc(item.dataset.src, isSupportWebP)
+                    switch (item.tagName.toLowerCase()) {
+                        case "img":
+                            item.setAttribute("src", finalSrc)
+                            break
+                        
+                        case "source":
+                            item.setAttribute("srcset", finalSrc)
+                            break
+                    }
+                }
+            })
+            
+        })
+    }
+
+    const observer = new MutationObserver(processElement)
+    observer.observe(document.body, { attributes: true, childList: true, subtree: true })
 })

@@ -1,0 +1,25 @@
+{
+    "test": {
+        "artist": "Forum",
+        "music": "Level",
+        "thumbnail": "../../banner_x0.6.webp"
+    },
+
+    "wasans": {
+        "artist": "404",
+        "music": "Error",
+        "thumbnail": "../../banner_x0.6.webp"
+    },
+
+    "odfjapodf": {
+        "artist": "403",
+        "music": "Error",
+        "thumbnail": "../../banner_x0.6.webp"
+    },
+
+    "jfoipweq": {
+        "artist": "거지같은",
+        "music": "무한에러",
+        "thumbnail": "../../banner_x0.6.webp"
+    }
+}
