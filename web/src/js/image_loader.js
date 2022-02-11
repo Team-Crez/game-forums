@@ -1,6 +1,7 @@
 var loadImageAsync = null
 
 document.addEventListener("DOMContentLoaded", (event) => {
+
     function checkWebP() {
         var elem = document.createElement('canvas');
 

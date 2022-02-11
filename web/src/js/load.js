@@ -1,6 +1,16 @@
 var mapData = null;
 
 document.addEventListener("DOMContentLoaded", (event) => {
+    function isValidURL(str) {
+        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+          '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+          '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+          '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+        return !!pattern.test(str);
+      }
+
     fetch("src/data/levels.json", {
         method: 'get',
         headers: {
@@ -17,9 +27,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         Object.keys(data).forEach((level) => {
             var mapElem = document.createElement("div")
+            
+            var mapThumbnail = document.createElement("div")
+            var thumbnailImg = document.createElement("img")
 
-            var mapThumbnail = document.createElement("img")
-            mapThumbnail.dataset.asyncSrc = "src/data/{0}/{1}".format(level, data[level].thumbnail)
+            if (!isValidURL(data[level].thumbnail)) {
+                thumbnailImg.dataset.asyncSrc = "src/data/{0}/{1}".format(level, data[level].thumbnail)
+            } else {
+                thumbnailImg.dataset.asyncSrc = "{0}".format(data[level].thumbnail)
+            }
+
+            mapThumbnail.appendChild(thumbnailImg)
             mapThumbnail.classList.add("thumbnail")
 
             mapElem.appendChild(mapThumbnail)
@@ -43,9 +61,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
             diffElem.append("{0}".format(data[level].difficulty.toFixed(2)))
             
             mapSection.appendChild(mapElem)
-            mapThumbnail.addEventListener("load", (event) => {
+            thumbnailImg.addEventListener("load", (event) => {
                 mapElem.classList.add("map-block")
-                mapThumbnail.style.maxWidth = "100%"
+                thumbnailImg.style.maxWidth = "100%"
+                thumbnailImg.style.maxHeight = "100%"
 
                 mapElem.appendChild(artistElem)
                 mapElem.appendChild(musicElem)

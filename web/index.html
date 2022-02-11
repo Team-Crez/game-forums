@@ -9,14 +9,15 @@
         <!-- <meta content="{{ embed_color }}" data-react-helmet="true" name="theme-color"> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        {% for global_style in global_styles %}
+            <link rel="stylesheet" href="src/style/{{ global_style }}">
+        {% endfor %}
         <link rel="stylesheet" href="src/style/mainpage.css">
-        <link rel="stylesheet" href="src/style/global.css">
 
         {% for global_script in global_scripts %}
-            <script src="src/js/{{ global_script }}"></script>
+            <script src="{{ global_script }}"></script>
         {% endfor %}
         <script src="src/js/menu.js"></script>
-        <script src="src/js/load.js"></script>
     </head>
 
     <body>

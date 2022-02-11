@@ -14,18 +14,26 @@ flask_properties = {
     "template_folder": "web"
 }
 
+global_styles = [
+    "global.css"
+]
+
 global_scripts = [
-    "string.js",
-    "image_loader.js",
-    "element_scaler.js",
-    "https_redirection.js"
+    "https://github.com/js-cookie/js-cookie/releases/download/v3.0.1/js.cookie.min.js",
+    
+    "src/js/https_redirection.js",
+    "src/js/image_loader.js",
+    "src/js/string.js",
+
+    "src/js/load.js",
+    "src/js/element_scaler.js",
 ]
 
 def get_global_scripts():
     result = copy.copy(global_scripts)
     if flask_args['debug']:
-        if "https_redirection.js" in result:
-            result.remove("https_redirection.js")
+        if "src/js/https_redirection.js" in result:
+            result.remove("src/js/https_redirection.js")
     return result
 
 def timeout(sec):
@@ -80,6 +88,7 @@ def start():
     if '-local' in args: flask_args['host'] = '127.0.0.1'
 
     default_prop["global_scripts"] = get_global_scripts()
+    default_prop["global_styles"] = global_styles
 
     resized_images = ImageModifier.image_resizer(["./web/src/banner.webp"], [0.8, 0.6, 0.4, 0.2])[1]
     ImageModifier.image_changer(resized_images, 'png')
