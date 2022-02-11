@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% for embed_content, embed_property in embed_metadata %}
             <meta content="{{ embed_content }}" property="{{ embed_property }}" name="{{ embed_property }}">
         {% endfor %}
@@ -19,37 +20,39 @@
     </head>
 
     <body>
-        <section class="menu">
-            <item>
-                Games
+        <div id="app">
+            <section class="menu">
                 <item>
-                    A Dance of Fire and Ice
+                    Games
+                    <item>
+                        A Dance of Fire and Ice
+                    </item>
+                    <item>
+                        Rhythm Doctor
+                    </item>
                 </item>
                 <item>
-                    Rhythm Doctor
+                    Levels
+                    <item>
+                        Difficulty
+                    </item>
                 </item>
-            </item>
-            <item>
-                Levels
-                <item>
-                    Difficulty
-                </item>
-            </item>
-        </section>
-        <section id="banner">
-            <picture>
-                <source data-src="{{ banner }}.webp" media="(min-width: 2400px) and (min-height: 800px)" class="banner">
-                <source data-src="{{ banner }}_x0.8.webp" media="(min-width: 1920px) and (min-height: 640px)" class="banner">
-                <source data-src="{{ banner }}_x0.6.webp" media="(min-width: 1440px) and (min-height: 480px)" class="banner">
-                <!-- <source data-src="{{ banner }}_x0.4.webp" media="(min-width: 976px) and (min-height: 333.3333333333px)" class="banner"> -->
-                <source data-src="{{ banner }}_x0.4.webp" class="banner">
-                <!-- <source data-src="{{ banner }}_x0.2.webp" class="banner"> -->
-                <img data-src="{{ banner }}.webp" class="banner">
-            </picture>
-            <p class="site-title">얼불춤 & 리듬닥터<br>통합 비공식 포럼</p>
-        </section>
-        <contour class="topcontour"></contour>
-        <section class="maps">
-        </section>
+            </section>
+            <section id="banner">
+                <picture>
+                    <source data-src="{{ banner }}.webp" media="(min-width: 2400px) and (min-height: 800px)" class="banner">
+                    <source data-src="{{ banner }}_x0.8.webp" media="(min-width: 1920px) and (min-height: 640px)" class="banner">
+                    <source data-src="{{ banner }}_x0.6.webp" media="(min-width: 1440px) and (min-height: 480px)" class="banner">
+                    <!-- <source data-src="{{ banner }}_x0.4.webp" media="(min-width: 976px) and (min-height: 333.3333333333px)" class="banner"> -->
+                    <source data-src="{{ banner }}_x0.4.webp" class="banner">
+                    <!-- <source data-src="{{ banner }}_x0.2.webp" class="banner"> -->
+                    <img data-src="{{ banner }}.webp" class="banner">
+                </picture>
+                <p class="site-title">얼불춤 & 리듬닥터<br>통합 비공식 포럼</p>
+            </section>
+            <contour class="topcontour"></contour>
+            <section class="maps">
+            </section>
+        </div>
     </body>
 </html>

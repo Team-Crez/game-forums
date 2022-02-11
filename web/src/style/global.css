@@ -1,8 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&family=Noto+Sans+KR:wght@400;700&display=swap');
 
+#app {
+    display: block;
+    position: relative;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+body {
+    width: 100%;
+    margin: 0px;
+    background-color: rgb(65, 65, 65);
+    position: fixed;
+}
+
 img {
     border-radius: 9px;
     -webkit-user-drag: none;
+    user-select: none;
+}
+
+item {
     user-select: none;
 }
 
@@ -115,9 +133,14 @@ contour {
     display: block;
 }
 
-.map-block > item > info-tag {
+info-tag {
+    font-size: 2vw;
     display: inline-block;
     color: rgb(160, 160, 160);
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.map-block > item > info-tag {
     margin-right: 1vw;
     min-width: 8.25vw;
 }
@@ -132,4 +155,12 @@ contour {
         transform: translateY(0px);
         opacity: 100%;
     }
+}
+
+.display-block {
+    display: block;
+}
+
+.display-block.center {
+    text-align: center;
 }

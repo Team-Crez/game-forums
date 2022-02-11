@@ -54,4 +54,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
             })
         })
     }
+
+    try {
+        if (new RegExp("; en-US; Valve Steam Tenfoot\\/[0-9]*; \\)").test(navigator.userAgent)) {
+            var infoTag = document.createElement("info-tag"); infoTag.innerText = "Steam에서 이용하고 계시네요!"
+            
+            infoTag.classList.add("display-block")
+            infoTag.classList.add("center")
+            infoTag.style.marginTop = "2.8vh"
+
+            document.body.insertBefore(infoTag, document.body.children[1])
+        }
+    } catch (error) {
+        document.write(error)
+    }
 })

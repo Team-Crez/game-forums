@@ -1,9 +1,4 @@
-
-
-body {
-    margin: 0px;
-    background-color: rgb(65, 65, 65);
-}
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&family=Noto+Sans+KR:wght@400;700&display=swap');
 
 #banner {
     display: flex;
