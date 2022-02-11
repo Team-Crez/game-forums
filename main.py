@@ -88,6 +88,7 @@ def start():
         start_new_thread(timeout, (float(args['-timeout']), ))
 
     if not 'HEROKU_ENV' in os.environ: app.run(**flask_args)
+    else: app.run()
 
 start()
 
