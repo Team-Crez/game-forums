@@ -1,14 +1,18 @@
+import io
 import time, signal
 import os, sys, copy
+from tokenize import String
 
 from scripts import *
-from flask import Flask, Response, abort, render_template
+from flask import Flask, Response, abort, render_template, request
 from _thread import start_new_thread
 
 from scripts.args import ArgumentParser
 from scripts.file import FlaskFileReader
 from scripts.image import ImageModifier
 from scripts.mime import MIMEType
+
+from PIL import Image
 
 flask_properties = {
     "template_folder": "web"
@@ -52,7 +56,7 @@ default_prop = {
         ["통합 비공식 포럼", "og:title"],
         ["Team Crez에서 개발 중인 얼불춤 & 리듬닥터 통합 비공식 포럼입니다", "og:description"],
         ["https://game-forums.herokuapp.com", "og:url"],
-        ["https://game-forums.herokuapp.com/src/banner_x0.2.webp", "og:image"],
+        ["https://game-forums.herokuapp.com/src/banner.webp?scale=0.2", "og:image"],
         ["#fc7b03", "theme-color"] # rgb(252, 123, 3) -> #fc7b03
     ]
 }
@@ -75,6 +79,16 @@ def hello():
 @app.route('/src/<path:file>')
 def load_source(file):
     try:
+        if MIMEType.is_image(file):
+            img = Image.open("web/src/" + file)
+            if request.args.get("scale", 0):
+                byteIO = io.BytesIO()
+                size = float(request.args.get("scale"))
+                img = img.resize((int(img.width * size), int(img.height * size)), Image.LANCZOS)
+                img.save(byteIO, MIMEType.get_mimetype('' + file).replace("image/", ""))
+                byteIO.seek(0)
+
+                return Response(byteIO, mimetype=MIMEType.get_mimetype(file))
         return Response(flaskReader.readWeb('src/' + file), mimetype=MIMEType.get_mimetype(file))
     except FileNotFoundError:
         abort(404)
@@ -94,8 +108,10 @@ def start():
     default_prop["global_scripts"] = get_global_scripts()
     default_prop["global_styles"] = global_styles
 
+    """
     resized_images = ImageModifier.image_resizer(["./web/src/banner.webp"], [0.8, 0.6, 0.4, 0.2])[1]
     ImageModifier.image_changer(resized_images, 'png')
+    """
 
     if '-timeout' in args:
         start_new_thread(timeout, (float(args['-timeout']), ))

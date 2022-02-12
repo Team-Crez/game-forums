@@ -42,12 +42,12 @@
             <section id="banner">
                 <picture>
                     <source data-src="{{ banner }}.webp" media="(min-width: 2400px) and (min-height: 800px)" class="banner">
-                    <source data-src="{{ banner }}_x0.8.webp" media="(min-width: 1920px) and (min-height: 640px)" class="banner">
-                    <source data-src="{{ banner }}_x0.6.webp" media="(min-width: 1440px) and (min-height: 480px)" class="banner">
-                    <!-- <source data-src="{{ banner }}_x0.4.webp" media="(min-width: 976px) and (min-height: 333.3333333333px)" class="banner"> -->
-                    <source data-src="{{ banner }}_x0.4.webp" class="banner">
-                    <!-- <source data-src="{{ banner }}_x0.2.webp" class="banner"> -->
-                    <img data-src="{{ banner }}.webp" class="banner">
+                    <source data-src="{{ banner }}.webp?scale=0.8" media="(min-width: 1920px) and (min-height: 640px)" class="banner">
+                    <source data-src="{{ banner }}.webp?scale=0.6" media="(min-width: 1440px) and (min-height: 480px)" scale="0" class="banner">
+                    <!-- <source data-src="{{ banner }}.webp?scale=0.4" media="(min-width: 976px) and (min-height: 333.3333333333px)" class="banner"> -->
+                    <source data-src="{{ banner }}.webp?scale=0.4" class="banner">
+                    <!-- <source data-src="{{ banner }}.webp?scale=0.2" class="banner"> -->
+                    <img data-src="{{ banner }}.webp?scale=0.6" class="banner">
                 </picture>
                 <p class="site-title">얼불춤 & 리듬닥터<br>통합 비공식 포럼</p>
             </section>
