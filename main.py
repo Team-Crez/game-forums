@@ -19,12 +19,16 @@ global_styles = [
 ]
 
 global_scripts = [
+    # 외부 모듈
     "https://github.com/js-cookie/js-cookie/releases/download/v3.0.1/js.cookie.min.js",
+    "src/js/sha512.min.js",
     
+    # 내부 모듈
     "src/js/https_redirection.js",
     "src/js/image_loader.js",
     "src/js/string.js",
 
+    # 사이트 구성요소3
     "src/js/load.js",
     "src/js/element_scaler.js",
 ]
