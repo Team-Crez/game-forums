@@ -50,7 +50,7 @@ class ImageModifier:
     @staticmethod
     def resize_image(img, scale, method = Image.LANCZOS):
         finalImg = copy.copy(img)
-        if scale < 0: finalImg = finalImg.transpose(Image.ROTATE_180)  
+        if scale < 0: finalImg = finalImg.transpose(Image.ROTATE_180)
         scale = abs(scale)
 
         if scale == 1: return finalImg

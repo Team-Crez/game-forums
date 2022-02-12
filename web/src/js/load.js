@@ -76,14 +76,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     try {
-        if (new RegExp("; en-US; Valve Steam Tenfoot\\/[0-9]*; \\)").test(navigator.userAgent)) {
+        // Mozilla/5.0 (Windows; U; Windows NT 10.0; en-US; Valve Steam GameOverlay/1642451672; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36
+        if (navigator.userAgent.match(/; en-US; Valve Steam (Tenfoot|GameOverlay)\/[0-9]*; \)/gm)) {
             var infoTag = document.createElement("info-tag"); infoTag.innerText = "Steam에서 이용하고 계시네요!"
             
             infoTag.classList.add("display-block")
             infoTag.classList.add("center")
             infoTag.style.marginTop = "2.8vh"
 
-            document.body.insertBefore(infoTag, document.body.children[1])
+            document.querySelector("#app").insertBefore(infoTag, document.querySelector("#app").children[1])
         }
     } catch (error) {
         document.write(error)
