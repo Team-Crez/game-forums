@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             if (!isValidURL(data[level].thumbnail)) {
                 thumbnailImg.dataset.asyncSrc = "src/data/{0}/{1}".format(level, data[level].thumbnail)
             } else {
-                thumbnailImg.dataset.asyncSrc = "{0}".format(data[level].thumbnail)
+                thumbnailImg.dataset.asyncSrc = "{0}?{1}".format(data[level].thumbnail, window.performance.now() * 1000)
             }
 
             mapThumbnail.appendChild(thumbnailImg)
