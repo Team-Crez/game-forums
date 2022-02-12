@@ -1,4 +1,5 @@
 import os, copy
+import numpy as np
 from PIL import Image
 
 class ImageModifier:
@@ -14,8 +15,9 @@ class ImageModifier:
             for size in sizes:
                 size_img = copy.copy(img)
                 splitted_path = os.path.split(path)[1]
-                img_resized = size_img.resize((int(size_img.width * size), int(size_img.height * size)), Image.LANCZOS)
-                img_name = "{}/{}_x{}{}".format(os.path.dirname(path), os.path.splitext(splitted_path)[0], size, os.path.splitext(splitted_path)[1])
+                splitted_path_text = os.path.splitext(splitted_path)
+                img_resized = ImageModifier.resize_image(size_img, size)
+                img_name = "{}/{}_x{}{}".format(os.path.dirname(path), splitted_path_text[0], size, splitted_path_text[1])
                 img_resized.save(img_name)
 
                 img_names.append(img_name)
@@ -44,3 +46,16 @@ class ImageModifier:
             img_path_list.append(img_name)
 
         return img_paths, img_path_list
+
+    @staticmethod
+    def resize_image(img, scale, method = Image.LANCZOS):
+        finalImg = copy.copy(img)
+        if scale < 0: finalImg = finalImg.transpose(Image.ROTATE_180)  
+        scale = abs(scale)
+
+        if scale == 1: return finalImg
+        elif scale > 1: scale = 1
+        
+        size = np.array(finalImg.size, dtype=np.int64)
+        finalImg = finalImg.resize((size * scale).astype(np.int64), method)
+        return finalImg

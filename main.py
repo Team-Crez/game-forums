@@ -80,11 +80,19 @@ def hello():
 def load_source(file):
     try:
         if MIMEType.is_image(file):
-            img = Image.open("web/src/" + file)
+            img = flaskReader.loadImg("src/" + file)
             if request.args.get("scale", 0):
                 byteIO = io.BytesIO()
-                size = float(request.args.get("scale"))
-                img = img.resize((int(img.width * size), int(img.height * size)), Image.LANCZOS)
+                try:
+                    size = float(request.args.get("scale"))
+                except ValueError:
+                    abort(400)
+
+                try:
+                    img = ImageModifier.resize_image(img, size)
+                except ValueError:
+                    abort(406)
+                
                 img.save(byteIO, MIMEType.get_mimetype('' + file).replace("image/", ""))
                 byteIO.seek(0)
 

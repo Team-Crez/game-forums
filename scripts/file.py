@@ -1,3 +1,5 @@
+from PIL import Image
+
 if __name__ != "__main__":
     class FlaskFileReader:
         def __init__(self, template_folder="templates"):
@@ -8,3 +10,6 @@ if __name__ != "__main__":
 
         def readWeb(self, path):
             return open("{}/{}".format(self.temp_path, path), 'rb').read()
+
+        def loadImg(self, path):
+            return Image.open("{}/{}".format(self.temp_path, path))
