@@ -12,16 +12,28 @@ from scripts.file import FlaskFileReader
 from scripts.image import ImageModifier
 from scripts.mime import MIMEType
 
-from PIL import Image
+# 스크립트 설정
+script_prop = {
+    "analytics": "4C9EB64NSW"
+}
 
+# Flask 설정
 flask_properties = {
     "template_folder": "web"
 }
 
+# 모든 웹 페이지에 적용되는 CSS
 global_styles = [
     "global.css"
 ]
 
+# 애널리틱스 스크립트
+analytics_scripts = [
+    "src/js/analytics.js",
+    "https://www.googletagmanager.com/gtag/js?id=G-{}".format(script_prop['analytics']),
+]
+
+# 웹 파일 설정
 global_scripts = [
     # 필수 스크립트
     "src/js/offline.js",
@@ -54,6 +66,7 @@ def timeout(sec):
 app = Flask(__name__, **flask_properties)
 flaskReader = FlaskFileReader(template_folder=flask_properties["template_folder"])
 
+# 모든 웹 페이지에 적용되는 설정
 default_prop = {
     "title": "Game Forums",
     "embed_metadata": [
@@ -94,7 +107,7 @@ def pages(file):
         if MIMEType.get_mimetype("web/" + file) == "text/html":
             return render_template(file, **get_prop(main_prop))
         else:
-            return Response(flaskReader.readMinWeb(file), mimetype=MIMEType.get_mimetype("web/" + file))
+            return Response(flaskReader.readMinWeb(file, **script_prop), mimetype=MIMEType.get_mimetype("web/" + file))
     else: abort(404)
 
 @app.route('/src/<path:file>')
@@ -118,12 +131,12 @@ def load_source(file):
                 byteIO.seek(0)
 
                 return Response(byteIO, mimetype=MIMEType.get_mimetype(file))
-        return Response(flaskReader.readMinWeb('src/' + file), mimetype=MIMEType.get_mimetype(file))
+        return Response(flaskReader.readMinWeb('src/' + file, **script_prop), mimetype=MIMEType.get_mimetype(file))
     except FileNotFoundError:
         abort(404)
 
 def start():
-    global flask_args, resized_images, default_prop
+    global flask_args, resized_images, default_prop, global_scripts
     args = ArgumentParser.parse_args(sys.argv)
     flask_args = {
         'host': '0.0.0.0'
@@ -134,6 +147,10 @@ def start():
 
     if '-local' in args: flask_args['host'] = '127.0.0.1'
 
+    if not flask_args['debug']:
+        for analytics_script in analytics_scripts:
+            global_scripts.append(analytics_script)
+    
     default_prop["global_scripts"] = get_global_scripts()
     default_prop["global_styles"] = global_styles
 

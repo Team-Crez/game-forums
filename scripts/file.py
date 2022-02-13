@@ -17,10 +17,14 @@ if __name__ != "__main__":
         def readWeb(self, path):
             return open("{}/{}".format(self.temp_path, path), 'rb').read()
 
-        def readWebText(self, path):
-            return open("{}/{}".format(self.temp_path, path), 'r', encoding='utf-8').read()
+        def readWebText(self, path, **kwargs):
+            text = open("{}/{}".format(self.temp_path, path), 'r', encoding='utf-8').read()
+            for key, value in kwargs.items():
+                re.sub(r"\\[\\[\\[ *{} *\\]\\]\\]".format(key), value, text)
 
-        def readMinWeb(self, path):
+            return text
+
+        def readMinWeb(self, path, **kwargs):
             # open("{}/{}".format(self.temp_path, path), 'rb').read()
             return jsmin(self.readWebText(path)) if MIMEType.get_mimetype("{}/{}".format(self.temp_path, path)) == 'application/javascript' and (not self.minify_regex.match(path)) else self.readWeb(path)
             
