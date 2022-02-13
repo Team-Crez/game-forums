@@ -1,5 +1,4 @@
 import io
-from msilib.schema import MIME
 import time, signal
 import os, sys, copy
 from tokenize import String
