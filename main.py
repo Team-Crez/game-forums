@@ -23,6 +23,9 @@ global_styles = [
 ]
 
 global_scripts = [
+    # 필수 스크립트
+    "src/js/offline.js",
+
     # 외부 모듈
     "https://github.com/js-cookie/js-cookie/releases/download/v3.0.1/js.cookie.min.js",
     "src/js/sha512.min.js",
@@ -32,9 +35,9 @@ global_scripts = [
     "src/js/image_loader.js",
     "src/js/string.js",
 
-    # 사이트 구성요소3
-    "src/js/load.js",
+    # 사이트 구성요소
     "src/js/element_scaler.js",
+    "src/js/level_loader.js",
 ]
 
 def get_global_scripts():

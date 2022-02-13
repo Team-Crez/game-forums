@@ -5,7 +5,7 @@
 	"display": "fullscreen",
 	"orientation": "any",
 	"icons": [{
-		"src": "logo.webp",
+		"src": "src/logo.webp",
 		"sizes": "512x512",
 		"type": "image/webp"
 	}]
