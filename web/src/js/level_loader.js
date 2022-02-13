@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 randCount++
             }
 
+            mapThumbnail.setAttribute("alt", "thumbnail")
             mapThumbnail.appendChild(thumbnailImg)
             mapThumbnail.classList.add("thumbnail")
 

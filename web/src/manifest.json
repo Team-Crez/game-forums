@@ -8,5 +8,6 @@
 		"src": "logo.webp",
 		"sizes": "512x512",
 		"type": "image/webp"
-	}]
+	}],
+    "theme_color": "rgb(65, 65, 65)"
 }
