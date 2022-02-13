@@ -3,6 +3,6 @@ if ('serviceWorker' in navigator) {
         navigator.serviceWorker
             .register("/service_worker.js")
             .then(res => console.log("registered"))
-            .then(err => console.log(err))
+            .catch(err => console.log(err))
     })
 }
