@@ -52,6 +52,7 @@ app = Flask(__name__, **flask_properties)
 flaskReader = FlaskFileReader(template_folder=flask_properties["template_folder"])
 
 default_prop = {
+    "title": "Game Forums",
     "embed_metadata": [
         ["통합 비공식 포럼", "og:title"],
         ["Team Crez에서 개발 중인 얼불춤 & 리듬닥터 통합 비공식 포럼입니다", "og:description"],
@@ -69,12 +70,22 @@ def get_prop(prop):
     return result
 
 @app.route('/')
-def hello():
+def main():
     main_prop = {
         "banner": "src/banner"
     }
 
     return render_template("index.html", **get_prop(main_prop))
+
+@app.route('/<path:file>')
+def pages():
+    main_prop = {
+        "banner": "src/banner"
+    }
+    
+    if os.path.isfile("web/" + file):
+        return render_template(file, **get_prop(main_prop))
+    else: abort(404)
 
 @app.route('/src/<path:file>')
 def load_source(file):

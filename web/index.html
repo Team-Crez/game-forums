@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <title>{{ title }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% for embed_content, embed_property in embed_metadata %}
             <meta content="{{ embed_content }}" property="{{ embed_property }}" name="{{ embed_property }}">
@@ -9,6 +10,8 @@
         <!-- <meta content="{{ embed_color }}" data-react-helmet="true" name="theme-color"> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <link rel="shortcut icon" href="src/logo.webp">
+        <link rel="manifest" href="src/manifest.json">
         {% for global_style in global_styles %}
             <link rel="stylesheet" href="src/style/{{ global_style }}">
         {% endfor %}
