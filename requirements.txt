@@ -7,4 +7,5 @@ Jinja2==3.0.3
 MarkupSafe==2.0.1
 numpy==1.22.2
 Pillow==9.0.0
+rjsmin==1.2.0
 Werkzeug==2.0.2

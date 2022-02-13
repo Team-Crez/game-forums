@@ -57,6 +57,10 @@ flaskReader = FlaskFileReader(template_folder=flask_properties["template_folder"
 default_prop = {
     "title": "Game Forums",
     "embed_metadata": [
+        ["width=device-width, initial-scale=1.0", "viewport"],
+        ["Team Crez에서 개발 중인 얼불춤 & 리듬닥터 통합 비공식 포럼입니다", "description"],
+
+        #Embed 데이터
         ["통합 비공식 포럼", "og:title"],
         ["Team Crez에서 개발 중인 얼불춤 & 리듬닥터 통합 비공식 포럼입니다", "og:description"],
         ["https://game-forums.herokuapp.com", "og:url"],
@@ -80,7 +84,7 @@ def main():
 
     return render_template("index.html", **get_prop(main_prop))
 
-@app.route('/<path:file>')
+@app.route('/<file>')
 def pages(file):
     main_prop = {
         "banner": "src/banner"
@@ -90,7 +94,7 @@ def pages(file):
         if MIMEType.get_mimetype("web/" + file) == "text/html":
             return render_template(file, **get_prop(main_prop))
         else:
-            return Response(flaskReader.readWeb(file), mimetype=MIMEType.get_mimetype("web/" + file))
+            return Response(flaskReader.readMinWeb(file), mimetype=MIMEType.get_mimetype("web/" + file))
     else: abort(404)
 
 @app.route('/src/<path:file>')
@@ -114,7 +118,7 @@ def load_source(file):
                 byteIO.seek(0)
 
                 return Response(byteIO, mimetype=MIMEType.get_mimetype(file))
-        return Response(flaskReader.readWeb('src/' + file), mimetype=MIMEType.get_mimetype(file))
+        return Response(flaskReader.readMinWeb('src/' + file), mimetype=MIMEType.get_mimetype(file))
     except FileNotFoundError:
         abort(404)
 
