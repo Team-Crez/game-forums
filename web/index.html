@@ -3,18 +3,17 @@
     <head>
         <meta charset="utf-8">
         <title>{{ title }}</title>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         {% for embed_content, embed_property in embed_metadata %}
             <meta content="{{ embed_content }}" property="{{ embed_property }}" name="{{ embed_property }}">
         {% endfor %}
 
-        <meta name="apple-mobile-web-app-capable" content="yes">
-    	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	    <meta name="HandheldFriendly" content="true" />
+        <meta name="mobile-web-app-capable" content="yes" />
 
-        <link rel="apple-touch-icon" sizes="512x512" href="src/logo.webp">
         <link rel="shortcut icon" href="src/logo.webp">
         <link rel="manifest" href="src/manifest.json">
+
         {% for global_style in global_styles %}
             <link rel="stylesheet" href="src/style/{{ global_style }}">
         {% endfor %}

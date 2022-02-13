@@ -1,6 +1,6 @@
 {
-	"name": "Game Forums (App)",
-	"short_name": "Game Forums (App)",
+	"name": "Game Forums",
+	"short_name": "Game Forums",
 	"start_url": "index.html",
 	"display": "fullscreen",
 	"orientation": "any",
