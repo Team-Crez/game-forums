@@ -1,4 +1,5 @@
 import io
+from msilib.schema import MIME
 import time, signal
 import os, sys, copy
 from tokenize import String
@@ -81,13 +82,16 @@ def main():
     return render_template("index.html", **get_prop(main_prop))
 
 @app.route('/<path:file>')
-def pages():
+def pages(file):
     main_prop = {
         "banner": "src/banner"
     }
     
     if os.path.isfile("web/" + file):
-        return render_template(file, **get_prop(main_prop))
+        if MIMEType.get_mimetype("web/" + file) == "text/html":
+            return render_template(file, **get_prop(main_prop))
+        else:
+            return Response(flaskReader.readWeb(file), mimetype=MIMEType.get_mimetype("web/" + file))
     else: abort(404)
 
 @app.route('/src/<path:file>')
