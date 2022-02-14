@@ -71,7 +71,7 @@ default_prop = {
     "title": "Game Forums",
     "metadata": [
         # 소유권 확인
-        ["-5mrPsvvBLfpLAMYBsbmLYzsVI6mLpjrs8xvNpaESDI", "google-site-verification"]
+        ["-5mrPsvvBLfpLAMYBsbmLYzsVI6mLpjrs8xvNpaESDI", "google-site-verification"],
 
         # 뷰포트와 사이트 설정
         ["width=device-width, initial-scale=1.0", "viewport"],
