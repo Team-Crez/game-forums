@@ -2,11 +2,14 @@
 	"name": "Game Forums",
 	"short_name": "Game Forums",
 	"start_url": "/index.html",
-	
+
 	"display": "fullscreen",
 	"orientation": "any",
 
-	"icons": [{"src": "logo.webp","sizes": "512x512","type": "image/webp"}],
+	"icons": [
+		{"src": "logo.webp","sizes": "512x512","type": "image/webp"},
+		{"src": "logo.png","sizes": "512x512","type": "image/png"}
+	],
 	
 	"background_color": "#414141",
 	"theme_color": "#414141"
