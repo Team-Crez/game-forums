@@ -61,6 +61,7 @@ def timeout(sec):
 app = Flask(__name__, **flask_properties)
 flaskReader = FlaskFileReader(template_folder=flask_properties["template_folder"])
 local_addr = socket.gethostbyname(socket.gethostname())
+domain = "game-forums.herokuapp.com"
 
 # 모든 웹 페이지에 적용되는 설정
 default_prop = {
@@ -153,6 +154,9 @@ def start():
         flask_args['debug'] = False
 
     if '-local' in args: flask_args['host'] = '127.0.0.1'
+
+    req_addr = flask_args['host']
+    if 'HEROKU_ENV' in os.environ: req_addr = domain
     
     default_prop["global_scripts"] = get_global_scripts()
     default_prop["global_styles"] = global_styles
@@ -160,7 +164,7 @@ def start():
     default_prop["gtag_id"] = script_prop["gtag_id"]
 
     def requester(path):
-        return requests.get("http://{}:{}/{}".format(flask_args['host'], flask_args['port'], path))
+        return requests.get("http://{}:{}/{}".format(req_addr, flask_args['port'], path))
 
     default_prop["web_reader"] = WebReader(requester)
 
