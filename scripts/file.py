@@ -26,7 +26,7 @@ if __name__ != "__main__":
 
         def readMinWeb(self, path, **kwargs):
             # open("{}/{}".format(self.temp_path, path), 'rb').read()
-            return jsmin(self.readWebText(path), **kwargs) if MIMEType.get_mimetype("{}/{}".format(self.temp_path, path)) == 'application/javascript' and (not self.minify_regex.match(path)) else self.readWeb(path)
+            return jsmin(self.readWebText(path, **kwargs)) if MIMEType.get_mimetype("{}/{}".format(self.temp_path, path)) == 'application/javascript' and (not self.minify_regex.match(path)) else self.readWeb(path)
             
         def loadImg(self, path):
             return Image.open("{}/{}".format(self.temp_path, path))
