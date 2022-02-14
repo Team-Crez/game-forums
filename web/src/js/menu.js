@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+loaded = () => {
     /*
     function fixMenu() {
         var menu_items = document.querySelectorAll(".menu > *, .menu > * > *")
@@ -26,4 +26,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
         fixMenu()
     })
     */
-})
+}
+
+document.addEventListener("DOMContentLoaded", loaded)
+
+if (document.readyState === "interactive") {
+    loaded()
+}

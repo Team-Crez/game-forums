@@ -24,10 +24,10 @@
         {% for global_style in global_styles %}<link rel="stylesheet" href="src/style/{{ global_style }}">
         {% endfor %}
         <link rel="stylesheet" href="src/style/mainpage.css">
-
-        {% for global_script in global_scripts %}<script src="{{ global_script }}"></script>
+        
+        {% for global_script in global_scripts %}{% if type(global_script) == list %}<script src="{{ global_script[0] }}" async></script>{% else %}<script src="{{ global_script }}"></script>{% endif %}
         {% endfor %}
-        <script src="src/js/menu.js"></script>
+        <script async src="src/js/menu.js"></script>
     </head>
 
     <body>

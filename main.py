@@ -28,23 +28,25 @@ global_styles = [
     "global.css"
 ]
 
-# 모든 웹 페이지에 적용되는 스크립트 설정
+# 모든 웹 페이지에 적용되는 스크립트 설정 (대괄호로 감싸면 비동기 로딩)
 global_scripts = [
+    # 사전 처리 스크립트
+    "src/js/https_redirection.js",
+
     # 필수 스크립트
     "src/js/offline.js",
 
     # 외부 모듈
-    "https://github.com/js-cookie/js-cookie/releases/download/v3.0.1/js.cookie.min.js",
+    ["https://github.com/js-cookie/js-cookie/releases/download/v3.0.1/js.cookie.min.js"],
     "src/js/sha512.min.js",
     
     # 내부 모듈
-    "src/js/https_redirection.js",
-    "src/js/image_loader.js",
     "src/js/string.js",
+    ["src/js/image_loader.js"],
+    ["src/js/element_scaler.js"],
 
     # 사이트 구성요소
-    "src/js/element_scaler.js",
-    "src/js/level_loader.js",
+    ["src/js/level_loader.js"],
 ]
 
 def get_global_scripts():
@@ -65,8 +67,12 @@ domain = "game-forums.herokuapp.com"
 
 # 모든 웹 페이지에 적용되는 설정
 default_prop = {
+    # 사이트 제목
     "title": "Game Forums",
+    # 구글 태그 관리자 스크립트
     "gtag_script": "src/js/gtag_manager.js",
+
+    # <meta> 태그 내용
     "metadata": [
         # 소유권 확인
         ["-5mrPsvvBLfpLAMYBsbmLYzsVI6mLpjrs8xvNpaESDI", "google-site-verification"],
@@ -81,7 +87,11 @@ default_prop = {
         ["https://game-forums.herokuapp.com", "og:url"],
         ["https://game-forums.herokuapp.com/src/banner.webp?scale=0.2", "og:image"],
         ["#fc7b03", "theme-color"] # rgb(252, 123, 3) -> #fc7b03
-    ]
+    ],
+
+    # 기본 함수
+    "type": type,
+    "list": list
 }
 
 def get_prop(prop):

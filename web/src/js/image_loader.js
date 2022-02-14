@@ -1,6 +1,6 @@
 var loadImageAsync = null
 
-document.addEventListener("DOMContentLoaded", (event) => {
+loaded = () => {
 
     function checkWebP() {
         var elem = document.createElement('canvas');
@@ -82,4 +82,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const observer = new MutationObserver(processElement)
     observer.observe(document.body, { attributes: true, childList: true, subtree: true })
-})
+}
+
+document.addEventListener("DOMContentLoaded", loaded)
+
+if (document.readyState === "interactive") {
+    loaded()
+}
