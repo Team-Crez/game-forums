@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>{{ title }}</title>
-        {% for embed_content, embed_property in embed_metadata %}
-            <meta content="{{ embed_content }}" property="{{ embed_property }}" name="{{ embed_property }}">
+        {% for _content, _property in metadata %}
+            <meta content="{{ _content }}" property="{{ _property }}" name="{{ _property }}">
         {% endfor %}
 
         <meta name="mobile-web-app-capable" content="yes" />

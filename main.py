@@ -69,11 +69,15 @@ flaskReader = FlaskFileReader(template_folder=flask_properties["template_folder"
 # 모든 웹 페이지에 적용되는 설정
 default_prop = {
     "title": "Game Forums",
-    "embed_metadata": [
+    "metadata": [
+        # 소유권 확인
+        ["-5mrPsvvBLfpLAMYBsbmLYzsVI6mLpjrs8xvNpaESDI", "google-site-verification"]
+
+        # 뷰포트와 사이트 설정
         ["width=device-width, initial-scale=1.0", "viewport"],
         ["Team Crez에서 개발 중인 얼불춤 & 리듬닥터 통합 비공식 포럼입니다", "description"],
 
-        #Embed 데이터
+        # Embed 데이터
         ["통합 비공식 포럼", "og:title"],
         ["Team Crez에서 개발 중인 얼불춤 & 리듬닥터 통합 비공식 포럼입니다", "og:description"],
         ["https://game-forums.herokuapp.com", "og:url"],
