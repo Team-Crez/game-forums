@@ -1,9 +1,9 @@
-import io
+import io, socket
 import time, signal
 import os, sys, copy
 from tokenize import String
 
-from scripts import *
+import requests
 from flask import Flask, Response, abort, render_template, request
 from _thread import start_new_thread
 
@@ -11,10 +11,11 @@ from scripts.args import ArgumentParser
 from scripts.file import FlaskFileReader
 from scripts.image import ImageModifier
 from scripts.mime import MIMEType
+from scripts.websys import WebReader
 
 # 스크립트 설정
 script_prop = {
-    "analytics": "4C9EB64NSW"
+    "gtag_id": "TM36CC4"
 }
 
 # Flask 설정
@@ -22,18 +23,12 @@ flask_properties = {
     "template_folder": "web"
 }
 
-# 모든 웹 페이지에 적용되는 CSS
+# 모든 웹 페이지에 적용되는 스타일 설정
 global_styles = [
     "global.css"
 ]
 
-# 애널리틱스 스크립트
-analytics_scripts = [
-    "src/js/analytics.js",
-    "https://www.googletagmanager.com/gtag/js?id=G-{}".format(script_prop['analytics']),
-]
-
-# 웹 파일 설정
+# 모든 웹 페이지에 적용되는 스크립트 설정
 global_scripts = [
     # 필수 스크립트
     "src/js/offline.js",
@@ -65,10 +60,12 @@ def timeout(sec):
 
 app = Flask(__name__, **flask_properties)
 flaskReader = FlaskFileReader(template_folder=flask_properties["template_folder"])
+local_addr = socket.gethostbyname(socket.gethostname())
 
 # 모든 웹 페이지에 적용되는 설정
 default_prop = {
     "title": "Game Forums",
+    "gtag_script": "src/js/gtag_manager.js",
     "metadata": [
         # 소유권 확인
         ["-5mrPsvvBLfpLAMYBsbmLYzsVI6mLpjrs8xvNpaESDI", "google-site-verification"],
@@ -143,25 +140,29 @@ def start():
     global flask_args, resized_images, default_prop, global_scripts
     args = ArgumentParser.parse_args(sys.argv)
     flask_args = {
-        'host': '0.0.0.0'
+        'host': '0.0.0.0',
+        'port': 80
     }
 
-    if '-debug' in args: flask_args['debug'] = True
-    else: flask_args['debug'] = False
+    if '-debug' in args:
+        flask_args['host'] = local_addr
+        script_prop["gtag_id"] = ""
+        flask_args['debug'] = True
+        flask_args['port'] = 5000
+    else:
+        flask_args['debug'] = False
 
     if '-local' in args: flask_args['host'] = '127.0.0.1'
-
-    if not flask_args['debug']:
-        for analytics_script in analytics_scripts:
-            global_scripts.append(analytics_script)
     
     default_prop["global_scripts"] = get_global_scripts()
     default_prop["global_styles"] = global_styles
 
-    """
-    resized_images = ImageModifier.image_resizer(["./web/src/banner.webp"], [0.8, 0.6, 0.4, 0.2])[1]
-    ImageModifier.image_changer(resized_images, 'png')
-    """
+    default_prop["gtag_id"] = script_prop["gtag_id"]
+
+    def requester(path):
+        return requests.get("http://{}:{}/{}".format(flask_args['host'], flask_args['port'], path))
+
+    default_prop["web_reader"] = WebReader(requester)
 
     if '-timeout' in args:
         start_new_thread(timeout, (float(args['-timeout']), ))

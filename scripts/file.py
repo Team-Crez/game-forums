@@ -20,7 +20,7 @@ if __name__ != "__main__":
         def readWebText(self, path, **kwargs):
             text = open("{}/{}".format(self.temp_path, path), 'r', encoding='utf-8').read()
             for key, value in kwargs.items():
-                re.sub(r"\\[\\[\\[ *{} *\\]\\]\\]".format(key), value, text)
+                text = re.sub(r"\[\[\[ *" + str(key) + r" *\]\]\]", value, text)
 
             return text
 

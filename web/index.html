@@ -1,30 +1,44 @@
 <!DOCTYPE HTML>
 <html lang="ko">
     <head>
+        {% if gtag_id != "" %}
+            <!-- Google Tag Manager -->
+            {% autoescape false %}
+                <script>
+                    {{ web_reader.readContent( gtag_script ) }}
+                </script>
+            {% endautoescape %}
+            <!-- End Google Tag Manager -->
+        {% endif %}
+
         <meta charset="utf-8">
         <title>{{ title }}</title>
-        {% for _content, _property in metadata %}
-            <meta content="{{ _content }}" property="{{ _property }}" name="{{ _property }}">
+        {% for _content, _property in metadata %}<meta content="{{ _content }}" property="{{ _property }}" name="{{ _property }}">
         {% endfor %}
-
         <meta name="mobile-web-app-capable" content="yes" />
 
         <link rel="apple-touch-icon" href="src/logo.webp">
         <link rel="shortcut icon" href="src/logo.webp">
         <link rel="manifest" href="src/manifest.json">
 
-        {% for global_style in global_styles %}
-            <link rel="stylesheet" href="src/style/{{ global_style }}">
+        {% for global_style in global_styles %}<link rel="stylesheet" href="src/style/{{ global_style }}">
         {% endfor %}
         <link rel="stylesheet" href="src/style/mainpage.css">
 
-        {% for global_script in global_scripts %}
-            <script src="{{ global_script }}"></script>
+        {% for global_script in global_scripts %}<script src="{{ global_script }}"></script>
         {% endfor %}
         <script src="src/js/menu.js"></script>
     </head>
 
     <body>
+        {% if gtag_id != "" %}
+            <!-- Google Tag Manager (noscript) -->
+            <noscript>
+                    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-{{ gtag_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+            </noscript>
+            <!-- End Google Tag Manager (noscript) -->
+        {% endif %}
+
         <div id="app">
             <section class="menu">
                 <item>
