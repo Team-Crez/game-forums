@@ -1,7 +1,7 @@
 {
 	"name": "Game Forums",
 	"short_name": "Game Forums",
-	"start_url": "index.html",
+	"start_url": "/index.html",
 	"display": "fullscreen",
 	"orientation": "any",
 	"icons": [{
